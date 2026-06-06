@@ -28,8 +28,7 @@ body{
   background-image:linear-gradient(90deg,rgba(231,236,243,.7) 1px,transparent 1px);background-size:64px 100%}
 .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto}
 
-.head{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;
-  border-bottom:1px solid var(--line);padding-bottom:20px}
+.head{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:20px}
 .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue)}
 .title{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,58px);line-height:.92;letter-spacing:-.015em;margin:6px 0 0;font-variation-settings:'opsz' 120;color:var(--ink)}
 .title em{font-style:italic;color:var(--blue)}
@@ -44,7 +43,8 @@ body{
 .search:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
 .search input{flex:1;background:transparent;border:0;outline:0;color:var(--ink);font-family:var(--body);font-size:15px}
 .search input::placeholder{color:var(--faint)}
-.search span{font-family:var(--mono);font-size:14px;color:var(--blue)}
+.search .ic{font-family:var(--mono);font-size:14px;color:var(--blue)}
+.search .scope{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);border-left:1px solid var(--line);padding-left:10px;white-space:nowrap}
 .window{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.02em;display:flex;align-items:center;gap:7px;white-space:nowrap}
 .window .pip{width:7px;height:7px;border-radius:50%;background:var(--green)}
 
@@ -60,17 +60,20 @@ body{
 .h2 .num{font-family:var(--mono);font-size:13px;color:var(--blue);vertical-align:super;margin-right:8px}
 .h2desc{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:5px}
 
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:.18s;box-shadow:0 1px 2px rgba(20,26,34,.04);animation:rise .5s both}
-.card:hover{border-color:#cdd8e6;transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,40,80,.08)}
-.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:.18s}
-.card:hover::before{opacity:1}
-.card.fresh::before{opacity:1;background:var(--green)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.18s;box-shadow:0 1px 2px rgba(20,26,34,.04);animation:rise .5s both}
+.card:hover{border-color:#cdd8e6;transform:translateY(-2px);box-shadow:0 10px 26px rgba(20,40,80,.10)}
 @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.toprow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.thumb{position:relative;height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.favi{width:46px;height:46px;border-radius:11px;background:#fff;padding:8px;box-shadow:0 2px 8px rgba(20,40,80,.18);position:relative;z-index:1}
+.thumb-scrim{position:absolute;left:0;right:0;bottom:0;height:46px;background:linear-gradient(transparent,rgba(8,14,24,.45));z-index:1}
+.fresh-ribbon{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:#fff;background:var(--green);padding:4px 8px;border-radius:4px;display:flex;align-items:center;gap:5px;box-shadow:0 2px 6px rgba(15,157,107,.4)}
+.fresh-ribbon .dot{width:6px;height:6px;border-radius:50%;background:#fff}
+.body{padding:15px 17px 13px;display:flex;flex-direction:column;gap:9px;flex:1}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-strong);background:var(--blue-soft);border:1px solid #d6e4fc;padding:3px 8px;border-radius:3px}
-.fresh-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--green);background:var(--green-soft);border:1px solid #cdeede;padding:3px 7px;border-radius:3px;display:flex;align-items:center;gap:5px}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.seg{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--green-soft);border:1px solid #cdeede;padding:3px 7px;border-radius:3px}
 .ctitle{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.22;margin:0;letter-spacing:-.005em;color:var(--ink)}
 .csum{font-size:14.5px;line-height:1.46;color:#3c4654;margin:0;flex:1}
 .cfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
@@ -87,9 +90,9 @@ body{
 <div class="wrap">
   <header class="head">
     <div>
-      <div class="kicker">Social Intelligence Desk</div>
+      <div class="kicker">Allen Looi</div>
       <h1 class="title">Morning <em>Brew</em></h1>
-      <div class="sub">Mutant Communications · Regional Social · <b>SG + MY</b></div>
+      <div class="sub">Social Digest</div>
     </div>
     <div class="meta">
       <div class="clock" id="clock"></div>
@@ -99,8 +102,9 @@ body{
   </header>
 
   <div class="bar">
-    <label class="search"><span>&#9906;</span>
-      <input id="q" placeholder="Filter this section by keyword, brand, platform..." />
+    <label class="search"><span class="ic">&#9906;</span>
+      <input id="q" placeholder="Search across all segments..." />
+      <span class="scope">all segments</span>
     </label>
     <div class="window"><span class="pip"></span><span id="updated">loading...</span></div>
   </div>
@@ -115,47 +119,48 @@ body{
   <div class="cards" id="cards"></div>
 
   <footer class="foot">
-    <div><b>Rolling 30-day window.</b> A scheduled job pulls fresh items each morning (07:00 SGT by default) and merges them into a 30-day archive. New items each run are flagged green and float to the top; items older than 30 days drop off.</div>
-    <div><b>Sources.</b> Every card links to its primary source. Data comes from live web search across the open web, so quality varies. Verify before client use. Edit sections in fetch.mjs.</div>
+    <div><b>Rolling 30-day window.</b> A scheduled job pulls fresh items each morning, scrapes a thumbnail from each source, and merges them into a 30-day archive. New items each run are flagged green; items older than 30 days drop off.</div>
+    <div><b>Thumbnails</b> come from each article's own share image where available, with a branded colour tile as fallback. <b>Search</b> spans every segment at once. Every card links to its primary source. Verify before client use.</div>
   </footer>
 </div>
 
 <script>
-// Embedded seed = fallback so the page renders even before data.json exists.
 const SEED = {
-  generatedAt: "2026-06-06T00:00:00.000Z", retainDays: 30,
-  sections: [
-    { id:"platform", label:"Platform & Algorithm", desc:"Feature drops, ranking-signal shifts and ad-product changes across the major platforms", items:[
+  generatedAt:"2026-06-06T00:00:00.000Z", retainDays:30,
+  sections:[
+    {id:"platform",label:"Platform & Algorithm",desc:"Feature drops, ranking-signal shifts and ad-product changes across the major platforms",items:[
       {tag:"Instagram",title:"Sends and DM shares now a top ranking signal",summary:"Mosseri confirms watch time, likes and sends are the three core signals, with sends driving unconnected reach. Carousels are getting a fresh distribution boost.",source:"Hootsuite",date:"May 2026",url:"https://blog.hootsuite.com/social-media-algorithm/"},
       {tag:"X",title:"X Chat launches, Communities shuts down 30 May",summary:"X spun out a standalone messaging app and is killing Communities, its main community tool. Plan migrations for any client groups living there.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"},
       {tag:"Meta",title:"AI Business Assistant opens to all advertisers globally",summary:"Meta handed AI the keys to ad setup including Pixel config, and shipped a zero-code Conversions API setup. Less dev dependency, more automated targeting.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"},
       {tag:"LinkedIn",title:"Dwell time drives reach, AI search goes global",summary:"Posts that hold viewers 5 seconds plus get exponentially more reach. The feed has shifted toward an interest-graph hybrid rewarding text-first Creator Mode posts.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"} ]},
-    { id:"creator", label:"Creator & Influencer", desc:"The creator economy, KOL strategy and what is working across SEA", items:[
+    {id:"creator",label:"Creator & Influencer",desc:"The creator economy, KOL strategy and what is working across SEA",items:[
       {tag:"SEA",title:"Influencer marketing pivots to revenue-linked KPIs",summary:"Success now rides on long-term creator partnerships over one-off posts, with measurement shifting from likes and impressions to business outcomes.",source:"AnyMind",date:"Apr 2026",url:"https://anymindgroup.com/blog/sea-influencer-marketing-2026/"},
       {tag:"Platform",title:"Xiaohongshu rises in Mandarin-speaking SG and MY",summary:"RED is now a serious complement to TikTok and Instagram for Mandarin communities. A channel worth testing for relevant client segments.",source:"AnyMind",date:"Apr 2026",url:"https://anymindgroup.com/blog/sea-influencer-marketing-2026/"},
       {tag:"Case",title:"Huggies wins big on micro-influencers",summary:"Working with 350 micro-influencers across 1,000-plus pieces drove half of all campaign views and pushed costs down. Volume plus relevance beat one big name.",source:"Campaign Asia",date:"May 2026",url:"https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56"},
       {tag:"Case",title:"Wet n Wild challenge drives 1.5M UGC videos",summary:"Custom audio with JVKE plus a Bella Poarch-led multi-creator challenge hit a 13.7 percent TopView engagement rate and a 9.6 percent awareness lift.",source:"YouScan",date:"May 2026",url:"https://youscan.io/blog/social-media-campaign-examples/"} ]},
-    { id:"campaigns", label:"Brand Campaigns & Craft", desc:"Standout creative and social-first work worth stealing structure from", items:[
+    {id:"campaigns",label:"Brand Campaigns & Craft",desc:"Standout creative and social-first work worth stealing structure from",items:[
       {tag:"Stunt",title:"Chili's fake payday-lender pop-up next to McDonald's",summary:"A one-day guerrilla shop spoofing meal-cost financing pulled three-hour queues and over 6 billion impressions. Built around a real cost-of-living tension.",source:"StoryChief",date:"Apr 2026",url:"https://storychief.io/blog/recent-innovative-marketing-campaigns"},
       {tag:"Social-first",title:"Dove takes Real Beauty to Reddit, criticism and all",summary:"DAVID London ran testimonials inside Reddit's native format, folding in skepticism as proof rather than polish. Verification as a trust play in a low-trust feed.",source:"The Goods",date:"Feb 2026",url:"https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns"},
       {tag:"Listening",title:"Vaseline turns TikTok trend-monitoring into a campaign",summary:"A 150-year-old brand built creative directly off social listening, reacting to what users were already saying. Among the year's strongest cultural-resonance plays.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
       {tag:"Nostalgia",title:"Folgers remixes its jingle into a seven-song mashup",summary:"BBH USA reframed a legacy morning ritual into an all-day cultural brand by blending wake-up anthems across genres and generations.",source:"The Goods",date:"Feb 2026",url:"https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns"} ]},
-    { id:"singapore", label:"Singapore / APAC", desc:"Regional brand, agency and platform moves on your doorstep", items:[
+    {id:"singapore",label:"Singapore / APAC",desc:"Regional brand, agency and platform moves on your doorstep",items:[
       {tag:"Event",title:"Campaign360 lands at Marina Bay Sands",summary:"Two days on AI in creative workflows, fragmentation and measurement. The throughline: build distinctive memory structures when you only get 1.7 seconds of attention on mobile.",source:"Campaign Asia",date:"May 2026",url:"https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56"},
       {tag:"Market data",title:"Singapore: 98.4% online, YouTube reach at 90.6%",summary:"Near-total connectivity. TikTok and Meta Advantage+ drive the fastest social ad growth, and localising creative for CN, Malay, Tamil and EN segments is the performance edge.",source:"EliteAsia",date:"Apr 2026",url:"https://www.eliteasia.co/top-digital-and-social-media-trends-in-singapore-2026/"},
       {tag:"Cause",title:"Five APAC cause campaigns embed value over messaging",summary:"Work across AU, ID, PH, SG and IN moved past hollow cause marketing. Indonesia's Wardah 'Hear in Hijab' brooch hearing aid was the standout for design-led impact.",source:"Mission Media",date:"May 2026",url:"https://missionmedia.asia/apac-cause-marketing-campaigns-2026/"},
       {tag:"Source",title:"Marketing-Interactive: the daily regional pulse",summary:"Your fastest read on SG, MY, ID, PH, TH and HK agency and brand moves. Worth a standing daily scan for client-adjacent news.",source:"Marketing-Interactive",date:"Jun 2026",url:"https://www.marketing-interactive.com/"} ]},
-    { id:"malaysia", label:"Malaysia", desc:"Platform behaviour, creator trends and brand work specific to the Malaysian market", items:[
+    {id:"malaysia",label:"Malaysia",desc:"Platform behaviour, creator trends and brand work specific to the Malaysian market",items:[
       {tag:"Commerce",title:"WhatsApp closes the sale in Malaysia's 'Digital Trinity'",summary:"Over 90 percent of local sales journeys involve a WhatsApp message before purchase. Winning brands split roles: Facebook for scale, TikTok for discovery, WhatsApp for conversion.",source:"AItouch",date:"Mar 2026",url:"https://aitouch.com.my/blog/social-media-marketing-malaysia/"},
       {tag:"Platform",title:"RED becomes a verification channel for Chinese-Malaysian buyers",summary:"Xiaohongshu is now near-mandatory for reaching high-spending urban Malaysian Chinese consumers, and nano-KOLs deliver the best trust-to-cost ratio for SMEs.",source:"AItouch",date:"Mar 2026",url:"https://aitouch.com.my/blog/social-media-marketing-malaysia/"},
       {tag:"Culture",title:"Festive-calendar content beats generic global messaging",summary:"Campaigns built around Ramadan, CNY, Deepavali, Merdeka and Malaysia Day consistently outperform. Bilingual captions and Bahasa Rojak lift relatability and click-through.",source:"Fixgure",date:"Apr 2026",url:"https://fixgure.com.my/social-media-marketing-malaysia-2026/"},
       {tag:"Auto",title:"Jetour runs full-funnel market entry against Proton and Perodua",summary:"The Chinese marque built credibility from zero awareness with a pre-launch lead-capture push across social, content, performance and PR. A useful playbook for new-entrant brands.",source:"OpenMinds",date:"May 2026",url:"https://www.openmindsresources.com/blog/performance-marketing-campaigns-malaysia-2026-7-real-examples-with-results/"} ]},
-    { id:"category", label:"Category Watch", desc:"Social moves in your clients' verticals: healthcare, automotive and luxury, gaming and tech, social good", items:[
+    {id:"category",label:"Category Watch",desc:"Social moves in your clients' verticals: healthcare, eldercare, automotive and luxury, gaming and electronics, job and recruitment platforms",items:[
       {tag:"Healthcare",title:"Pharma to outspend linear TV on social for the first time",summary:"eMarketer expects social to pass linear TV in pharma budgets. Reddit is one of the fastest-growing organic health categories at 48 percent year on year.",source:"Campaign US",date:"Jan 2026",url:"https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708"},
-      {tag:"Healthcare",title:"FDA ad crackdown set to extend to social and influencers",summary:"After targeting TV first, regulators signalled tougher action on deceptive health promotion across social and influencer marketing. Build compliance into creator briefs now.",source:"Campaign US",date:"Jan 2026",url:"https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708"},
+      {tag:"Eldercare",title:"Home Instead wins on Fast Company's Brands That Matter",summary:"The in-home care brand was the only one of its kind listed, recognised for its 'A Better What's Next' campaign reframing how families approach aging. A strong eldercare reference point.",source:"BusinessWire",date:"Dec 2025",url:"https://www.businesswire.com/news/home/20251204648095/en"},
       {tag:"Automotive",title:"BMW launches luxury brand campaign on YouTube and IG",summary:"A multi-channel push centred on performance and exclusivity for its top models, rolling out social-first before outdoor and TV. Useful reference for premium-tier social.",source:"BMW Group",date:"May 2026",url:"https://www.press.bmwgroup.com/global/article/detail/T0444691EN/new-brand-campaign-for-the-bmw-models-in-the-luxury-segment?language=en"},
-      {tag:"Automotive",title:"F1 keeps fuelling luxury-auto social conversation",summary:"Ferrari and Hamilton, plus Audi's 2026 F1 entry, generate sustained brand chatter well beyond race weekends. Strategic athlete and motorsport ties create durable visibility.",source:"Infegy",date:"Nov 2025",url:"https://www.infegy.com/blog/how-luxury-car-brands-are-redefining-marketing"} ]},
-    { id:"industry", label:"AI & Industry", desc:"The structural shifts reshaping how social and comms teams work", items:[
+      {tag:"Gaming",title:"Gaming ads hit 100% view rate, beating video and social",summary:"Microsoft and Dentsu research finds gaming ads are fully viewed far more than online video or social, with immersion predicting purchase action at 83 percent accuracy.",source:"Microsoft Advertising",date:"Apr 2026",url:"https://about.ads.microsoft.com/en/blog/post/april-2026/the-future-is-in-play-gaming-as-advertisings-most-powerful-ecosystem"},
+      {tag:"Recruitment",title:"Indeed and LinkedIn lean into brand storytelling",summary:"Indeed's 'stop searching, start matching' and LinkedIn's 'The network that works for you' both centre human relationships over feature claims. Jobstreet by SEEK is also flagging impersonation scams in MY.",source:"Marketing-Interactive",date:"Jun 2026",url:"https://www.marketing-interactive.com/indeed-says-it-s-time-to-stop-searching-and-start-matching"},
+      {tag:"Electronics",title:"Currys 'Curry sells' wins consumer-electronics media award",summary:"Spark Foundry's work for Currys took the consumer electronics category at the Campaign Media Awards 2026, a useful tonal reference for tech-retail social.",source:"Campaign UK",date:"Apr 2026",url:"https://www.campaignlive.co.uk/article/campaign-media-awards-winners-2026-consumer-electronics/1955322"} ]},
+    {id:"industry",label:"AI & Industry",desc:"The structural shifts reshaping how social and comms teams work",items:[
       {tag:"Forecast",title:"Global ad revenue projected up 8.8% in 2026",summary:"Digital advertising and marketing spend is expected to reach 786.2 billion dollars. Growth is real, but the mix is shifting fast toward automated and AI-led buys.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
       {tag:"AI",title:"AI is eroding the middle layers of marketing",summary:"Agentic media planning and AI-generated campaign variants are compressing the work between brief and output faster than most leaders admit publicly.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
       {tag:"Sentiment",title:"70% of consumers say AI-generated ads feel soulless",summary:"As synthetic content floods feeds, human stories are becoming the scarcest creative asset. Authenticity is reading as the antidote, not a trend.",source:"Mission Media",date:"May 2026",url:"https://missionmedia.asia/apac-cause-marketing-campaigns-2026/"},
@@ -166,35 +171,34 @@ const SEED = {
 let DATA = SEED;
 let active = SEED.sections[0].id;
 const $ = (id) => document.getElementById(id);
-const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+const esc = (s) => String(s==null?"":s).replace(/[&<>"]/g,(c)=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
 
-function fmtUpdated(iso, days){
-  try { const d = new Date(iso);
-    return "Updated " + d.toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) + " · " + (days||30) + "-day window"; }
-  catch { return (days||30)+"-day window"; }
+function domainOf(u){ try{ return new URL(u).hostname.replace(/^www\./,""); }catch{ return ""; } }
+function favicon(u){ const d=domainOf(u); return d?`https://www.google.com/s2/favicons?domain=${d}&sz=128`:""; }
+function grad(seed){
+  let h=0; const s=String(seed||"x"); for(let i=0;i<s.length;i++){ h=(h*31+s.charCodeAt(i))>>>0; }
+  const a=150+(h%90), b=(a+38)%360;   // green -> blue -> indigo range, on-brand
+  return `linear-gradient(135deg, hsl(${a} 62% 52%), hsl(${b} 64% 44%))`;
 }
 
-function renderTabs(){
-  $("tabs").innerHTML = DATA.sections.map(s =>
-    `<div class="tab ${s.id===active?"active":""}" data-id="${s.id}">${esc(s.label)}<b>${s.items.length}</b></div>`
-  ).join("");
-  document.querySelectorAll(".tab").forEach(t => t.onclick = () => { active = t.dataset.id; render(); });
+function fmtUpdated(iso,days){
+  try{ const d=new Date(iso); return "Updated "+d.toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"})+" · "+(days||30)+"-day window"; }
+  catch{ return (days||30)+"-day window"; }
 }
 
-function render(){
-  renderTabs();
-  const sect = DATA.sections.find(s => s.id === active) || DATA.sections[0];
-  const idx = DATA.sections.findIndex(s => s.id === sect.id) + 1;
-  $("secttitle").innerHTML = `<span class="num">${idx<10?"0":""}${idx}</span>${esc(sect.label)}`;
-  $("sectdesc").textContent = sect.desc || "";
-  const q = ($("q").value || "").trim().toLowerCase();
-  const items = sect.items.filter(it => !q ||
-    (`${it.title} ${it.summary} ${it.tag} ${it.source}`).toLowerCase().includes(q));
-  $("cards").innerHTML = items.length ? items.map((it,i) => `
-    <article class="card ${it.fresh?"fresh":""}" style="animation-delay:${Math.min(i*32,340)}ms">
+function cardHTML(it,i,segLabel){
+  const thumb = `
+    <div class="thumb" style="background:${grad(it.source||it.title)}">
+      ${it.fresh?`<span class="fresh-ribbon"><span class="dot"></span>NEW</span>`:""}
+      <img class="favi" src="${favicon(it.url)}" alt="" onerror="this.style.display='none'"/>
+      ${it.image?`<img class="thumb-img" src="${esc(it.image)}" alt="" loading="lazy" onerror="this.remove()"/><span class="thumb-scrim"></span>`:""}
+    </div>`;
+  return `<article class="card" style="animation-delay:${Math.min(i*30,330)}ms">
+    ${thumb}
+    <div class="body">
       <div class="toprow">
         <span class="tag">${esc(it.tag)}</span>
-        ${it.fresh?`<span class="fresh-badge"><span class="dot"></span>NEW</span>`:""}
+        ${segLabel?`<span class="seg">${esc(segLabel)}</span>`:""}
       </div>
       <h3 class="ctitle">${esc(it.title)}</h3>
       <p class="csum">${esc(it.summary)}</p>
@@ -202,9 +206,45 @@ function render(){
         <a class="src" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.source)} &#8599;</a>
         <span class="date">${esc(it.date)}</span>
       </div>
-    </article>`).join("") : `<div class="empty">No items match "${esc(q)}".</div>`;
+    </div>
+  </article>`;
+}
+
+function renderTabs(globalMode){
+  $("tabs").innerHTML = DATA.sections.map(s =>
+    `<div class="tab ${(!globalMode && s.id===active)?"active":""}" data-id="${s.id}">${esc(s.label)}<b>${s.items.length}</b></div>`
+  ).join("");
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => { $("q").value=""; active=t.dataset.id; render(); });
+}
+
+function render(){
+  const q = ($("q").value||"").trim().toLowerCase();
+  const globalMode = q.length>0;
+  renderTabs(globalMode);
   $("count").textContent = DATA.sections.reduce((n,s)=>n+s.items.length,0);
   $("updated").textContent = fmtUpdated(DATA.generatedAt, DATA.retainDays);
+
+  if(globalMode){
+    const hits=[];
+    DATA.sections.forEach(s => s.items.forEach(it => {
+      if((`${it.title} ${it.summary} ${it.tag} ${it.source} ${s.label}`).toLowerCase().includes(q))
+        hits.push({it, seg:s.label});
+    }));
+    $("secttitle").innerHTML = `<span class="num">&#9906;</span>Search`;
+    $("sectdesc").textContent = `${hits.length} result${hits.length===1?"":"s"} for "${q}" across all segments`;
+    $("cards").innerHTML = hits.length
+      ? hits.map((h,i)=>cardHTML(h.it,i,h.seg)).join("")
+      : `<div class="empty">No items match "${esc(q)}" in any segment.</div>`;
+    return;
+  }
+
+  const sect = DATA.sections.find(s=>s.id===active) || DATA.sections[0];
+  const idx = DATA.sections.findIndex(s=>s.id===sect.id)+1;
+  $("secttitle").innerHTML = `<span class="num">${idx<10?"0":""}${idx}</span>${esc(sect.label)}`;
+  $("sectdesc").textContent = sect.desc || "";
+  $("cards").innerHTML = sect.items.length
+    ? sect.items.map((it,i)=>cardHTML(it,i,null)).join("")
+    : `<div class="empty">No items yet. The next scheduled pull will populate this segment.</div>`;
 }
 
 $("q").addEventListener("input", render);
@@ -212,12 +252,12 @@ function tick(){
   $("clock").textContent = new Date().toLocaleTimeString("en-GB");
   $("today").textContent = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
 }
-tick(); setInterval(tick, 1000);
+tick(); setInterval(tick,1000);
 
-fetch("data.json", { cache: "no-store" })
-  .then(r => r.ok ? r.json() : Promise.reject())
-  .then(d => { if (d && d.sections && d.sections.length){ DATA = d; active = d.sections[0].id; } })
-  .catch(() => { /* use SEED */ })
+fetch("data.json",{cache:"no-store"})
+  .then(r=>r.ok?r.json():Promise.reject())
+  .then(d=>{ if(d&&d.sections&&d.sections.length){ DATA=d; active=d.sections[0].id; } })
+  .catch(()=>{})
   .finally(render);
 </script>
 </body>
