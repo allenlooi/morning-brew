@@ -1,0 +1,34 @@
+name: Refresh Morning Brew
+
+on:
+  schedule:
+    # 23:00 UTC = 07:00 Singapore time, daily.
+    # Add more lines to run more often, e.g. "0 11 * * *" for 19:00 SGT.
+    - cron: "0 23 * * *"
+  workflow_dispatch: {}   # lets you run it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Pull latest items
+        run: node fetch.mjs
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Commit updated data
+        run: |
+          git config user.name "morning-brew-bot"
+          git config user.email "morning-brew-bot@users.noreply.github.com"
+          git add data.json
+          git diff --quiet --cached || git commit -m "refresh: $(date -u +%FT%TZ)"
+          git push
