@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Morning Brew — Social Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Spectral:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#ffffff; --tint:#f6f9fc; --surface:#ffffff;
+  --ink:#141a22; --muted:#5a6573; --faint:#9aa4b2; --line:#e7ecf3;
+  --blue:#1763e6; --blue-strong:#0f4fc4; --blue-soft:#eaf1fe;
+  --green:#0f9d6b; --green-soft:#e7f6ef;
+  --display:'Fraunces',Georgia,serif; --body:'Spectral',Georgia,serif; --mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; color:var(--ink); font-family:var(--body); min-height:100vh;
+  padding:28px clamp(16px,4vw,52px) 64px;
+  background:
+    radial-gradient(900px 480px at 92% -8%, rgba(23,99,230,.06), transparent 60%),
+    radial-gradient(820px 460px at -6% 112%, rgba(15,157,107,.06), transparent 58%),
+    var(--bg);
+}
+.grid-overlay{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6;
+  background-image:linear-gradient(90deg,rgba(231,236,243,.7) 1px,transparent 1px);background-size:64px 100%}
+.wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto}
+
+.head{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;
+  border-bottom:1px solid var(--line);padding-bottom:20px}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--blue)}
+.title{font-family:var(--display);font-weight:600;font-size:clamp(34px,6vw,58px);line-height:.92;letter-spacing:-.015em;margin:6px 0 0;font-variation-settings:'opsz' 120;color:var(--ink)}
+.title em{font-style:italic;color:var(--blue)}
+.sub{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:7px}
+.sub b{color:var(--green);font-weight:500}
+.meta{text-align:right;font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.7}
+.meta b{color:var(--ink);font-weight:500}
+.clock{color:var(--blue)}
+
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:22px 0 6px}
+.search{flex:1;min-width:200px;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:11px 14px;box-shadow:0 1px 2px rgba(20,26,34,.03)}
+.search:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.search input{flex:1;background:transparent;border:0;outline:0;color:var(--ink);font-family:var(--body);font-size:15px}
+.search input::placeholder{color:var(--faint)}
+.search span{font-family:var(--mono);font-size:14px;color:var(--blue)}
+.window{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.02em;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.window .pip{width:7px;height:7px;border-radius:50%;background:var(--green)}
+
+.tabs{display:flex;flex-wrap:wrap;gap:4px;margin:18px 0 26px;border-bottom:1px solid var(--line)}
+.tab{font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;cursor:pointer;padding:11px 14px;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab b{color:var(--faint);font-weight:400;margin-left:6px}
+.tab.active b{color:var(--blue)}
+
+.secthead{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between;margin-bottom:18px}
+.h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,30px);margin:0;letter-spacing:-.01em}
+.h2 .num{font-family:var(--mono);font-size:13px;color:var(--blue);vertical-align:super;margin-right:8px}
+.h2desc{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:5px}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;transition:.18s;box-shadow:0 1px 2px rgba(20,26,34,.04);animation:rise .5s both}
+.card:hover{border-color:#cdd8e6;transform:translateY(-2px);box-shadow:0 8px 22px rgba(20,40,80,.08)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue);opacity:0;transition:.18s}
+.card:hover::before{opacity:1}
+.card.fresh::before{opacity:1;background:var(--green)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-strong);background:var(--blue-soft);border:1px solid #d6e4fc;padding:3px 8px;border-radius:3px}
+.fresh-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--green);background:var(--green-soft);border:1px solid #cdeede;padding:3px 7px;border-radius:3px;display:flex;align-items:center;gap:5px}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.ctitle{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.22;margin:0;letter-spacing:-.005em;color:var(--ink)}
+.csum{font-size:14.5px;line-height:1.46;color:#3c4654;margin:0;flex:1}
+.cfoot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.src{font-family:var(--mono);font-size:11px;color:var(--blue);text-decoration:none;max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:.15s}
+.src:hover{color:var(--blue-strong);text-decoration:underline}
+.date{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.05em}
+.empty{font-family:var(--mono);font-size:13px;color:var(--muted);padding:20px 0}
+.foot{margin-top:46px;border-top:1px solid var(--line);padding-top:18px;font-family:var(--mono);font-size:11px;color:var(--faint);line-height:1.85}
+.foot b{color:var(--muted);font-weight:500}
+</style>
+</head>
+<body>
+<div class="grid-overlay"></div>
+<div class="wrap">
+  <header class="head">
+    <div>
+      <div class="kicker">Social Intelligence Desk</div>
+      <h1 class="title">Morning <em>Brew</em></h1>
+      <div class="sub">Mutant Communications · Regional Social · <b>SG + MY</b></div>
+    </div>
+    <div class="meta">
+      <div class="clock" id="clock"></div>
+      <div id="today"></div>
+      <div><b id="count">0</b> items in window</div>
+    </div>
+  </header>
+
+  <div class="bar">
+    <label class="search"><span>&#9906;</span>
+      <input id="q" placeholder="Filter this section by keyword, brand, platform..." />
+    </label>
+    <div class="window"><span class="pip"></span><span id="updated">loading...</span></div>
+  </div>
+
+  <nav class="tabs" id="tabs"></nav>
+  <div class="secthead">
+    <div>
+      <h2 class="h2" id="secttitle"></h2>
+      <div class="h2desc" id="sectdesc"></div>
+    </div>
+  </div>
+  <div class="cards" id="cards"></div>
+
+  <footer class="foot">
+    <div><b>Rolling 30-day window.</b> A scheduled job pulls fresh items each morning (07:00 SGT by default) and merges them into a 30-day archive. New items each run are flagged green and float to the top; items older than 30 days drop off.</div>
+    <div><b>Sources.</b> Every card links to its primary source. Data comes from live web search across the open web, so quality varies. Verify before client use. Edit sections in fetch.mjs.</div>
+  </footer>
+</div>
+
+<script>
+// Embedded seed = fallback so the page renders even before data.json exists.
+const SEED = {
+  generatedAt: "2026-06-06T00:00:00.000Z", retainDays: 30,
+  sections: [
+    { id:"platform", label:"Platform & Algorithm", desc:"Feature drops, ranking-signal shifts and ad-product changes across the major platforms", items:[
+      {tag:"Instagram",title:"Sends and DM shares now a top ranking signal",summary:"Mosseri confirms watch time, likes and sends are the three core signals, with sends driving unconnected reach. Carousels are getting a fresh distribution boost.",source:"Hootsuite",date:"May 2026",url:"https://blog.hootsuite.com/social-media-algorithm/"},
+      {tag:"X",title:"X Chat launches, Communities shuts down 30 May",summary:"X spun out a standalone messaging app and is killing Communities, its main community tool. Plan migrations for any client groups living there.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"},
+      {tag:"Meta",title:"AI Business Assistant opens to all advertisers globally",summary:"Meta handed AI the keys to ad setup including Pixel config, and shipped a zero-code Conversions API setup. Less dev dependency, more automated targeting.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"},
+      {tag:"LinkedIn",title:"Dwell time drives reach, AI search goes global",summary:"Posts that hold viewers 5 seconds plus get exponentially more reach. The feed has shifted toward an interest-graph hybrid rewarding text-first Creator Mode posts.",source:"SocialPilot",date:"Apr 2026",url:"https://www.socialpilot.co/blog/social-media-updates"} ]},
+    { id:"creator", label:"Creator & Influencer", desc:"The creator economy, KOL strategy and what is working across SEA", items:[
+      {tag:"SEA",title:"Influencer marketing pivots to revenue-linked KPIs",summary:"Success now rides on long-term creator partnerships over one-off posts, with measurement shifting from likes and impressions to business outcomes.",source:"AnyMind",date:"Apr 2026",url:"https://anymindgroup.com/blog/sea-influencer-marketing-2026/"},
+      {tag:"Platform",title:"Xiaohongshu rises in Mandarin-speaking SG and MY",summary:"RED is now a serious complement to TikTok and Instagram for Mandarin communities. A channel worth testing for relevant client segments.",source:"AnyMind",date:"Apr 2026",url:"https://anymindgroup.com/blog/sea-influencer-marketing-2026/"},
+      {tag:"Case",title:"Huggies wins big on micro-influencers",summary:"Working with 350 micro-influencers across 1,000-plus pieces drove half of all campaign views and pushed costs down. Volume plus relevance beat one big name.",source:"Campaign Asia",date:"May 2026",url:"https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56"},
+      {tag:"Case",title:"Wet n Wild challenge drives 1.5M UGC videos",summary:"Custom audio with JVKE plus a Bella Poarch-led multi-creator challenge hit a 13.7 percent TopView engagement rate and a 9.6 percent awareness lift.",source:"YouScan",date:"May 2026",url:"https://youscan.io/blog/social-media-campaign-examples/"} ]},
+    { id:"campaigns", label:"Brand Campaigns & Craft", desc:"Standout creative and social-first work worth stealing structure from", items:[
+      {tag:"Stunt",title:"Chili's fake payday-lender pop-up next to McDonald's",summary:"A one-day guerrilla shop spoofing meal-cost financing pulled three-hour queues and over 6 billion impressions. Built around a real cost-of-living tension.",source:"StoryChief",date:"Apr 2026",url:"https://storychief.io/blog/recent-innovative-marketing-campaigns"},
+      {tag:"Social-first",title:"Dove takes Real Beauty to Reddit, criticism and all",summary:"DAVID London ran testimonials inside Reddit's native format, folding in skepticism as proof rather than polish. Verification as a trust play in a low-trust feed.",source:"The Goods",date:"Feb 2026",url:"https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns"},
+      {tag:"Listening",title:"Vaseline turns TikTok trend-monitoring into a campaign",summary:"A 150-year-old brand built creative directly off social listening, reacting to what users were already saying. Among the year's strongest cultural-resonance plays.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
+      {tag:"Nostalgia",title:"Folgers remixes its jingle into a seven-song mashup",summary:"BBH USA reframed a legacy morning ritual into an all-day cultural brand by blending wake-up anthems across genres and generations.",source:"The Goods",date:"Feb 2026",url:"https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns"} ]},
+    { id:"singapore", label:"Singapore / APAC", desc:"Regional brand, agency and platform moves on your doorstep", items:[
+      {tag:"Event",title:"Campaign360 lands at Marina Bay Sands",summary:"Two days on AI in creative workflows, fragmentation and measurement. The throughline: build distinctive memory structures when you only get 1.7 seconds of attention on mobile.",source:"Campaign Asia",date:"May 2026",url:"https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56"},
+      {tag:"Market data",title:"Singapore: 98.4% online, YouTube reach at 90.6%",summary:"Near-total connectivity. TikTok and Meta Advantage+ drive the fastest social ad growth, and localising creative for CN, Malay, Tamil and EN segments is the performance edge.",source:"EliteAsia",date:"Apr 2026",url:"https://www.eliteasia.co/top-digital-and-social-media-trends-in-singapore-2026/"},
+      {tag:"Cause",title:"Five APAC cause campaigns embed value over messaging",summary:"Work across AU, ID, PH, SG and IN moved past hollow cause marketing. Indonesia's Wardah 'Hear in Hijab' brooch hearing aid was the standout for design-led impact.",source:"Mission Media",date:"May 2026",url:"https://missionmedia.asia/apac-cause-marketing-campaigns-2026/"},
+      {tag:"Source",title:"Marketing-Interactive: the daily regional pulse",summary:"Your fastest read on SG, MY, ID, PH, TH and HK agency and brand moves. Worth a standing daily scan for client-adjacent news.",source:"Marketing-Interactive",date:"Jun 2026",url:"https://www.marketing-interactive.com/"} ]},
+    { id:"malaysia", label:"Malaysia", desc:"Platform behaviour, creator trends and brand work specific to the Malaysian market", items:[
+      {tag:"Commerce",title:"WhatsApp closes the sale in Malaysia's 'Digital Trinity'",summary:"Over 90 percent of local sales journeys involve a WhatsApp message before purchase. Winning brands split roles: Facebook for scale, TikTok for discovery, WhatsApp for conversion.",source:"AItouch",date:"Mar 2026",url:"https://aitouch.com.my/blog/social-media-marketing-malaysia/"},
+      {tag:"Platform",title:"RED becomes a verification channel for Chinese-Malaysian buyers",summary:"Xiaohongshu is now near-mandatory for reaching high-spending urban Malaysian Chinese consumers, and nano-KOLs deliver the best trust-to-cost ratio for SMEs.",source:"AItouch",date:"Mar 2026",url:"https://aitouch.com.my/blog/social-media-marketing-malaysia/"},
+      {tag:"Culture",title:"Festive-calendar content beats generic global messaging",summary:"Campaigns built around Ramadan, CNY, Deepavali, Merdeka and Malaysia Day consistently outperform. Bilingual captions and Bahasa Rojak lift relatability and click-through.",source:"Fixgure",date:"Apr 2026",url:"https://fixgure.com.my/social-media-marketing-malaysia-2026/"},
+      {tag:"Auto",title:"Jetour runs full-funnel market entry against Proton and Perodua",summary:"The Chinese marque built credibility from zero awareness with a pre-launch lead-capture push across social, content, performance and PR. A useful playbook for new-entrant brands.",source:"OpenMinds",date:"May 2026",url:"https://www.openmindsresources.com/blog/performance-marketing-campaigns-malaysia-2026-7-real-examples-with-results/"} ]},
+    { id:"category", label:"Category Watch", desc:"Social moves in your clients' verticals: healthcare, automotive and luxury, gaming and tech, social good", items:[
+      {tag:"Healthcare",title:"Pharma to outspend linear TV on social for the first time",summary:"eMarketer expects social to pass linear TV in pharma budgets. Reddit is one of the fastest-growing organic health categories at 48 percent year on year.",source:"Campaign US",date:"Jan 2026",url:"https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708"},
+      {tag:"Healthcare",title:"FDA ad crackdown set to extend to social and influencers",summary:"After targeting TV first, regulators signalled tougher action on deceptive health promotion across social and influencer marketing. Build compliance into creator briefs now.",source:"Campaign US",date:"Jan 2026",url:"https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708"},
+      {tag:"Automotive",title:"BMW launches luxury brand campaign on YouTube and IG",summary:"A multi-channel push centred on performance and exclusivity for its top models, rolling out social-first before outdoor and TV. Useful reference for premium-tier social.",source:"BMW Group",date:"May 2026",url:"https://www.press.bmwgroup.com/global/article/detail/T0444691EN/new-brand-campaign-for-the-bmw-models-in-the-luxury-segment?language=en"},
+      {tag:"Automotive",title:"F1 keeps fuelling luxury-auto social conversation",summary:"Ferrari and Hamilton, plus Audi's 2026 F1 entry, generate sustained brand chatter well beyond race weekends. Strategic athlete and motorsport ties create durable visibility.",source:"Infegy",date:"Nov 2025",url:"https://www.infegy.com/blog/how-luxury-car-brands-are-redefining-marketing"} ]},
+    { id:"industry", label:"AI & Industry", desc:"The structural shifts reshaping how social and comms teams work", items:[
+      {tag:"Forecast",title:"Global ad revenue projected up 8.8% in 2026",summary:"Digital advertising and marketing spend is expected to reach 786.2 billion dollars. Growth is real, but the mix is shifting fast toward automated and AI-led buys.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
+      {tag:"AI",title:"AI is eroding the middle layers of marketing",summary:"Agentic media planning and AI-generated campaign variants are compressing the work between brief and output faster than most leaders admit publicly.",source:"Futurists",date:"Mar 2026",url:"https://futurists.in/10-best-advertising-campaigns-of-2026/"},
+      {tag:"Sentiment",title:"70% of consumers say AI-generated ads feel soulless",summary:"As synthetic content floods feeds, human stories are becoming the scarcest creative asset. Authenticity is reading as the antidote, not a trend.",source:"Mission Media",date:"May 2026",url:"https://missionmedia.asia/apac-cause-marketing-campaigns-2026/"},
+      {tag:"AI",title:"Google's Gemini Spark runs as a 24/7 background agent",summary:"An always-on AI agent raises real governance questions for comms teams around oversight, approvals and brand safety. Worth a POV before clients ask.",source:"Mission Media",date:"May 2026",url:"https://missionmedia.asia/apac-cause-marketing-campaigns-2026/"} ]}
+  ]
+};
+
+let DATA = SEED;
+let active = SEED.sections[0].id;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+
+function fmtUpdated(iso, days){
+  try { const d = new Date(iso);
+    return "Updated " + d.toLocaleString("en-GB",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}) + " · " + (days||30) + "-day window"; }
+  catch { return (days||30)+"-day window"; }
+}
+
+function renderTabs(){
+  $("tabs").innerHTML = DATA.sections.map(s =>
+    `<div class="tab ${s.id===active?"active":""}" data-id="${s.id}">${esc(s.label)}<b>${s.items.length}</b></div>`
+  ).join("");
+  document.querySelectorAll(".tab").forEach(t => t.onclick = () => { active = t.dataset.id; render(); });
+}
+
+function render(){
+  renderTabs();
+  const sect = DATA.sections.find(s => s.id === active) || DATA.sections[0];
+  const idx = DATA.sections.findIndex(s => s.id === sect.id) + 1;
+  $("secttitle").innerHTML = `<span class="num">${idx<10?"0":""}${idx}</span>${esc(sect.label)}`;
+  $("sectdesc").textContent = sect.desc || "";
+  const q = ($("q").value || "").trim().toLowerCase();
+  const items = sect.items.filter(it => !q ||
+    (`${it.title} ${it.summary} ${it.tag} ${it.source}`).toLowerCase().includes(q));
+  $("cards").innerHTML = items.length ? items.map((it,i) => `
+    <article class="card ${it.fresh?"fresh":""}" style="animation-delay:${Math.min(i*32,340)}ms">
+      <div class="toprow">
+        <span class="tag">${esc(it.tag)}</span>
+        ${it.fresh?`<span class="fresh-badge"><span class="dot"></span>NEW</span>`:""}
+      </div>
+      <h3 class="ctitle">${esc(it.title)}</h3>
+      <p class="csum">${esc(it.summary)}</p>
+      <div class="cfoot">
+        <a class="src" href="${esc(it.url)}" target="_blank" rel="noopener noreferrer">${esc(it.source)} &#8599;</a>
+        <span class="date">${esc(it.date)}</span>
+      </div>
+    </article>`).join("") : `<div class="empty">No items match "${esc(q)}".</div>`;
+  $("count").textContent = DATA.sections.reduce((n,s)=>n+s.items.length,0);
+  $("updated").textContent = fmtUpdated(DATA.generatedAt, DATA.retainDays);
+}
+
+$("q").addEventListener("input", render);
+function tick(){
+  $("clock").textContent = new Date().toLocaleTimeString("en-GB");
+  $("today").textContent = new Date().toLocaleDateString("en-GB",{day:"numeric",month:"short",year:"numeric"});
+}
+tick(); setInterval(tick, 1000);
+
+fetch("data.json", { cache: "no-store" })
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(d => { if (d && d.sections && d.sections.length){ DATA = d; active = d.sections[0].id; } })
+  .catch(() => { /* use SEED */ })
+  .finally(render);
+</script>
+</body>
+</html>

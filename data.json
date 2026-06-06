@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-06-06T00:00:00.000Z",
+  "retainDays": 30,
+  "sections": [
+    {
+      "id": "platform",
+      "label": "Platform & Algorithm",
+      "desc": "Feature drops, ranking-signal shifts and ad-product changes across the major platforms",
+      "items": [
+        { "tag": "Instagram", "title": "Sends and DM shares now a top ranking signal", "summary": "Mosseri confirms watch time, likes and sends are the three core signals, with sends driving unconnected reach. Carousels are getting a fresh distribution boost.", "source": "Hootsuite", "date": "May 2026", "url": "https://blog.hootsuite.com/social-media-algorithm/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "X", "title": "X Chat launches, Communities shuts down 30 May", "summary": "X spun out a standalone messaging app and is killing Communities, its main community tool. Plan migrations for any client groups living there.", "source": "SocialPilot", "date": "Apr 2026", "url": "https://www.socialpilot.co/blog/social-media-updates", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Meta", "title": "AI Business Assistant opens to all advertisers globally", "summary": "Meta handed AI the keys to ad setup including Pixel config, and shipped a zero-code Conversions API setup. Less dev dependency, more automated targeting.", "source": "SocialPilot", "date": "Apr 2026", "url": "https://www.socialpilot.co/blog/social-media-updates", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "LinkedIn", "title": "Dwell time drives reach, AI search goes global", "summary": "Posts that hold viewers 5 seconds plus get exponentially more reach. The feed has shifted toward an interest-graph hybrid rewarding text-first Creator Mode posts.", "source": "SocialPilot", "date": "Apr 2026", "url": "https://www.socialpilot.co/blog/social-media-updates", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "creator",
+      "label": "Creator & Influencer",
+      "desc": "The creator economy, KOL strategy and what is working across SEA",
+      "items": [
+        { "tag": "SEA", "title": "Influencer marketing pivots to revenue-linked KPIs", "summary": "Success now rides on long-term creator partnerships over one-off posts, with measurement shifting from likes and impressions to business outcomes.", "source": "AnyMind", "date": "Apr 2026", "url": "https://anymindgroup.com/blog/sea-influencer-marketing-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Platform", "title": "Xiaohongshu rises in Mandarin-speaking SG and MY", "summary": "RED is now a serious complement to TikTok and Instagram for Mandarin communities. A channel worth testing for relevant client segments.", "source": "AnyMind", "date": "Apr 2026", "url": "https://anymindgroup.com/blog/sea-influencer-marketing-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Case", "title": "Huggies wins big on micro-influencers", "summary": "Working with 350 micro-influencers across 1,000-plus pieces drove half of all campaign views and pushed costs down. Volume plus relevance beat one big name.", "source": "Campaign Asia", "date": "May 2026", "url": "https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Case", "title": "Wet n Wild challenge drives 1.5M UGC videos", "summary": "Custom audio with JVKE plus a Bella Poarch-led multi-creator challenge hit a 13.7 percent TopView engagement rate and a 9.6 percent awareness lift.", "source": "YouScan", "date": "May 2026", "url": "https://youscan.io/blog/social-media-campaign-examples/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "campaigns",
+      "label": "Brand Campaigns & Craft",
+      "desc": "Standout creative and social-first work worth stealing structure from",
+      "items": [
+        { "tag": "Stunt", "title": "Chili's fake payday-lender pop-up next to McDonald's", "summary": "A one-day guerrilla shop spoofing meal-cost financing pulled three-hour queues and over 6 billion impressions. Built around a real cost-of-living tension.", "source": "StoryChief", "date": "Apr 2026", "url": "https://storychief.io/blog/recent-innovative-marketing-campaigns", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Social-first", "title": "Dove takes Real Beauty to Reddit, criticism and all", "summary": "DAVID London ran testimonials inside Reddit's native format, folding in skepticism as proof rather than polish. Verification as a trust play in a low-trust feed.", "source": "The Goods", "date": "Feb 2026", "url": "https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Listening", "title": "Vaseline turns TikTok trend-monitoring into a campaign", "summary": "A 150-year-old brand built creative directly off social listening, reacting to what users were already saying. Among the year's strongest cultural-resonance plays.", "source": "Futurists", "date": "Mar 2026", "url": "https://futurists.in/10-best-advertising-campaigns-of-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Nostalgia", "title": "Folgers remixes its jingle into a seven-song mashup", "summary": "BBH USA reframed a legacy morning ritual into an all-day cultural brand by blending wake-up anthems across genres and generations.", "source": "The Goods", "date": "Feb 2026", "url": "https://www.gethegoods.com/articles/the-global-creative-review-february-2026-best-advertising-campaigns", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "singapore",
+      "label": "Singapore / APAC",
+      "desc": "Regional brand, agency and platform moves on your doorstep",
+      "items": [
+        { "tag": "Event", "title": "Campaign360 lands at Marina Bay Sands", "summary": "Two days on AI in creative workflows, fragmentation and measurement. The throughline: build distinctive memory structures when you only get 1.7 seconds of attention on mobile.", "source": "Campaign Asia", "date": "May 2026", "url": "https://www.campaignasia.com/article/campaign360-in-singapore-2026-highlights/4m11zkh55bcmcs9qqpdt4cet56", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Market data", "title": "Singapore: 98.4% online, YouTube reach at 90.6%", "summary": "Near-total connectivity. TikTok and Meta Advantage+ drive the fastest social ad growth, and localising creative for CN, Malay, Tamil and EN segments is the performance edge.", "source": "EliteAsia", "date": "Apr 2026", "url": "https://www.eliteasia.co/top-digital-and-social-media-trends-in-singapore-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Cause", "title": "Five APAC cause campaigns embed value over messaging", "summary": "Work across AU, ID, PH, SG and IN moved past hollow cause marketing. Indonesia's Wardah 'Hear in Hijab' brooch hearing aid was the standout for design-led impact.", "source": "Mission Media", "date": "May 2026", "url": "https://missionmedia.asia/apac-cause-marketing-campaigns-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Source", "title": "Marketing-Interactive: the daily regional pulse", "summary": "Your fastest read on SG, MY, ID, PH, TH and HK agency and brand moves. Worth a standing daily scan for client-adjacent news.", "source": "Marketing-Interactive", "date": "Jun 2026", "url": "https://www.marketing-interactive.com/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "malaysia",
+      "label": "Malaysia",
+      "desc": "Platform behaviour, creator trends and brand work specific to the Malaysian market",
+      "items": [
+        { "tag": "Commerce", "title": "WhatsApp closes the sale in Malaysia's 'Digital Trinity'", "summary": "Over 90 percent of local sales journeys involve a WhatsApp message before purchase. Winning brands split roles: Facebook for scale, TikTok for discovery, WhatsApp for conversion.", "source": "AItouch", "date": "Mar 2026", "url": "https://aitouch.com.my/blog/social-media-marketing-malaysia/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Platform", "title": "RED becomes a verification channel for Chinese-Malaysian buyers", "summary": "Xiaohongshu is now near-mandatory for reaching high-spending urban Malaysian Chinese consumers, and nano-KOLs deliver the best trust-to-cost ratio for SMEs.", "source": "AItouch", "date": "Mar 2026", "url": "https://aitouch.com.my/blog/social-media-marketing-malaysia/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Culture", "title": "Festive-calendar content beats generic global messaging", "summary": "Campaigns built around Ramadan, CNY, Deepavali, Merdeka and Malaysia Day consistently outperform. Bilingual captions and Bahasa Rojak lift relatability and click-through.", "source": "Fixgure", "date": "Apr 2026", "url": "https://fixgure.com.my/social-media-marketing-malaysia-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Auto", "title": "Jetour runs full-funnel market entry against Proton and Perodua", "summary": "The Chinese marque built credibility from zero awareness with a pre-launch lead-capture push across social, content, performance and PR. A useful playbook for new-entrant brands.", "source": "OpenMinds", "date": "May 2026", "url": "https://www.openmindsresources.com/blog/performance-marketing-campaigns-malaysia-2026-7-real-examples-with-results/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "category",
+      "label": "Category Watch",
+      "desc": "Social moves in your clients' verticals: healthcare, automotive and luxury, gaming and tech, social good",
+      "items": [
+        { "tag": "Healthcare", "title": "Pharma to outspend linear TV on social for the first time", "summary": "eMarketer expects social to pass linear TV in pharma budgets. Reddit is one of the fastest-growing organic health categories at 48 percent year on year.", "source": "Campaign US", "date": "Jan 2026", "url": "https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Healthcare", "title": "FDA ad crackdown set to extend to social and influencers", "summary": "After targeting TV first, regulators signalled tougher action on deceptive health promotion across social and influencer marketing. Build compliance into creator briefs now.", "source": "Campaign US", "date": "Jan 2026", "url": "https://www.campaignlive.com/article/will-health-media-landscape-look-2026/1944708", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Automotive", "title": "BMW launches luxury brand campaign on YouTube and IG", "summary": "A multi-channel push centred on performance and exclusivity for its top models, rolling out social-first before outdoor and TV. Useful reference for premium-tier social.", "source": "BMW Group", "date": "May 2026", "url": "https://www.press.bmwgroup.com/global/article/detail/T0444691EN/new-brand-campaign-for-the-bmw-models-in-the-luxury-segment?language=en", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Automotive", "title": "F1 keeps fuelling luxury-auto social conversation", "summary": "Ferrari and Hamilton, plus Audi's 2026 F1 entry, generate sustained brand chatter well beyond race weekends. Strategic athlete and motorsport ties create durable visibility.", "source": "Infegy", "date": "Nov 2025", "url": "https://www.infegy.com/blog/how-luxury-car-brands-are-redefining-marketing", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    },
+    {
+      "id": "industry",
+      "label": "AI & Industry",
+      "desc": "The structural shifts reshaping how social and comms teams work",
+      "items": [
+        { "tag": "Forecast", "title": "Global ad revenue projected up 8.8% in 2026", "summary": "Digital advertising and marketing spend is expected to reach 786.2 billion dollars. Growth is real, but the mix is shifting fast toward automated and AI-led buys.", "source": "Futurists", "date": "Mar 2026", "url": "https://futurists.in/10-best-advertising-campaigns-of-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "AI", "title": "AI is eroding the middle layers of marketing", "summary": "Agentic media planning and AI-generated campaign variants are compressing the work between brief and output faster than most leaders admit publicly.", "source": "Futurists", "date": "Mar 2026", "url": "https://futurists.in/10-best-advertising-campaigns-of-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "Sentiment", "title": "70% of consumers say AI-generated ads feel soulless", "summary": "As synthetic content floods feeds, human stories are becoming the scarcest creative asset. Authenticity is reading as the antidote, not a trend.", "source": "Mission Media", "date": "May 2026", "url": "https://missionmedia.asia/apac-cause-marketing-campaigns-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false },
+        { "tag": "AI", "title": "Google's Gemini Spark runs as a 24/7 background agent", "summary": "An always-on AI agent raises real governance questions for comms teams around oversight, approvals and brand safety. Worth a POV before clients ask.", "source": "Mission Media", "date": "May 2026", "url": "https://missionmedia.asia/apac-cause-marketing-campaigns-2026/", "fetchedAt": "2026-06-06T00:00:00.000Z", "fresh": false }
+      ]
+    }
+  ]
+}
